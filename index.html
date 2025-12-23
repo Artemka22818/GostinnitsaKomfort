@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гостиница "Комфорт" - уютный и комфортный отдых</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Шапка */
+        header {
+            background: linear-gradient(rgba(38, 93, 119, 0.658), rgba(25, 7, 104, 0.7)), url('https://maps.app.goo.gl/LTjJks2eQcHq6FLv5') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .header-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* О гостинице */
+        .about {
+            background: #f9f9f9;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* СЛАЙДЕР НА ЧИСТОМ CSS */
+        .slider-section {
+            text-align: center;
+        }
+        
+        .slider-container {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .slider {
+            display: flex;
+            width: 600%; /* 6 слайдов × 100% */
+            animation: slide 30s infinite;
+        }
+        
+        .slide {
+            width: 16.6666666667%; /* 100% / 6 */
+            height: 500px;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            text-align: left;
+        }
+        
+        .slide-content h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .slide-content .room-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0 15px;
+        }
+        
+        /* Анимация слайдера */
+        @keyframes slide {
+            0%, 16% { transform: translateX(0); }
+            20%, 36% { transform: translateX(-16.6666666667%); }
+            40%, 56% { transform: translateX(-33.3333333333%); }
+            60%, 76% { transform: translateX(-50%); }
+            80%, 96% { transform: translateX(-66.6666666667%); }
+            100% { transform: translateX(-83.3333333333%); }
+        }
+        
+        /* Пауза анимации при наведении */
+        .slider-container:hover .slider {
+            animation-play-state: paused;
+        }
+        
+        /* Индикаторы для слайдера */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .slider-controls a {
+            display: block;
+            width: 50px;
+            height: 5px;
+            background-color: #ddd;
+            border-radius: 2px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider-controls a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: #3498db;
+            animation: indicator 30s infinite;
+        }
+        
+        /* Разные задержки для индикаторов */
+        .slider-controls a:nth-child(1)::before {
+            animation-delay: 0s;
+        }
+        
+        .slider-controls a:nth-child(2)::before {
+            animation-delay: -24s;
+        }
+        
+        .slider-controls a:nth-child(3)::before {
+            animation-delay: -18s;
+        }
+        
+        .slider-controls a:nth-child(4)::before {
+            animation-delay: -12s;
+        }
+        
+        .slider-controls a:nth-child(5)::before {
+            animation-delay: -6s;
+        }
+        
+        .slider-controls a:nth-child(6)::before {
+            animation-delay: 0s;
+            width: 100%;
+        }
+        
+        @keyframes indicator {
+            0% { width: 0%; }
+            16% { width: 100%; }
+            20% { width: 0%; }
+            100% { width: 0%; }
+        }
+        
+        /* Услуги */
+        .services {
+            background: #f9f9f9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        /* Контакты */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .contact-map {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: none;
+        }
+        
+        /* Подвал */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            width: 100%;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 36px;
+            }
+            
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                background: rgba(0,0,0,0.8);
+                padding: 10px;
+                border-radius: 5px;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .slide {
+                height: 400px;
+            }
+            
+            .slider-controls {
+                gap: 10px;
+            }
+            
+            .slider-controls a {
+                width: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide {
+                height: 350px;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .slide-content h3 {
+                font-size: 20px;
+            }
+            
+            .slider-controls {
+                gap: 8px;
+            }
+            
+            .slider-controls a {
+                width: 30px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">Комфорт</div>
+        <nav>
+            <ul>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#rooms">Номера</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Гостиница "Комфорт"</h1>
+            
+            <a href="#contact" class="btn">Забронировать номер</a>
+        </div>
+    </header>
+
+    <!-- О гостинице -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О нашей гостинице</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Гостиница "Комфорт" находимся в поселкее городского типа Лиман и средняя цена с человека от 1000 рублей за сутки.</p>
+                    <p>Мы предлагаем нашим гостям уютные номера, оборудованные всем необходимым для комфортного проживания.</p>
+                    <p>В гостинице "Комфорт" мы создали атмосферу домашнего уюта, сочетающуюся с высоким уровнем сервиса, чтобы каждый наш гость чувствовал себя как дома.</p>
+                    <a href="#rooms" class="btn">Посмотреть номера</a>
+                </div>
+                <div class="about-image">
+                    <img src="img\Снимок экрана 2025-12-20 174625.png" alt="Гостиница Комфорт">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Номера (Слайдер на чистом CSS) -->
+    <section id="rooms" class="slider-section">
+        <div class="container">
+            <h2>Наши номера</h2>
+            <p>Мы предлагаем различные категории номеров, чтобы удовлетворить потребности каждого гостя</p>
+            
+            <div class="slider-container">
+                <div class="slider">
+                    <!-- Слайд 1 -->
+                    <div class="slide">
+                        <img src="img\1.jpg" alt="Стандартный номер">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 2 -->
+                    <div class="slide">
+                        <img src="img\2.jpg" alt="Номер Делюкс">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 3 -->
+                    <div class="slide">
+                        <img src="img\3.jpg" alt="Люкс номер">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 4 -->
+                    <div class="slide">
+                        <img src="img\4.jpg" alt="Семейный номер">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 5 -->
+                    <div class="slide">
+                        <img src="img\5.jpg" alt="Бизнес-номер">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Слайд 6 -->
+                    <div class="slide">
+                        <img src="img\6.jpg" alt="Апартаменты">
+                        <div class="slide-content">
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Индикаторы прогресса -->
+            <div class="slider-controls">
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <p>Мы заботимся о комфорте наших гостей и предлагаем широкий спектр услуг</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Бесплатный Wi-Fi</h3>
+                    <p>Высокоскоростной беспроводной интернет на всей территории гостиницы</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3>Круглосуточная стойка</h3>
+                    <p>Наша служба приема и размещения работает 24/7 для вашего удобства</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Парковка</h3>
+                    <p>Охраняемая парковка для гостей отеля (платная услуга)</p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Контакты и бронирование</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Свяжитесь с нами</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Астраханская обл, п.Лиман, ул Усова 33</p>
+                    <p><i class="fas fa-phone"></i> +7 037 127 3948</p>
+                    <p><i class="fas fa-clock"></i> Круглосуточно</p>
+                    <h3 style="margin-top: 30px;">Забронировать номер</h3>
+                    <p>Для бронирования номера вы можете позвонить нам по указанному телефону или заполнить форму на нашем сайте.</p>
+                    <a href="tel:+74951234567" class="btn">Позвонить сейчас</a>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d585.0057582201945!2d47.20834708116411!3d45.775758593583454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41abbfbd658f41c1%3A0xbdd6d2a851b33d0e!2z0JPQvtGB0YLQuNC90LjRhtCwINCyINC_0L7RgdC10LvQutC1INCb0LjQvNCw0L0gItCa0L7QvNGE0L7RgNGCIg!5e0!3m2!1sru!2sru!4v1766239202433!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Комфорт</div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 Гостиница "Комфорт". Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Только для плавной прокрутки и фиксированной навигации
+        document.addEventListener('DOMContentLoaded', function() {
+            // Плавная прокрутка к якорям
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Добавление класса при прокрутке для фиксированной навигации
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.style.position = 'fixed';
+                    nav.style.top = '0';
+                    nav.style.right = '0';
+                    nav.style.left = '0';
+                    nav.style.background = 'rgba(0,0,0,0.9)';
+                    nav.style.padding = '10px 20px';
+                    nav.style.zIndex = '1000';
+                } else {
+                    nav.style.position = 'absolute';
+                    nav.style.background = 'transparent';
+                    nav.style.padding = '0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
